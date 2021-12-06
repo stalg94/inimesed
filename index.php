@@ -44,7 +44,7 @@ $people = countyData($sort, $search_term);
 </head>
 <body>
 <header class="header">
-    <p>Admin on sisse logitud</p>
+    <p>Tere tulemast, Admin!</p>
     <form action="logout.php" method="post">
         <input type="submit" value="Logi välja" name="logout">
     </form>

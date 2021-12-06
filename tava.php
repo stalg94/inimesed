@@ -43,13 +43,13 @@ $goods = groupData($sort, $search_term);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<!--     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>-->
     <title>Kaubad ja Kaubagruppid</title>
 </head>
 <body>
 <header class="header">
-    <p>Tavakasutaja on sisse logitud</p>
+    <p>Tere tulemast, tava!</p>
     <form action="logout.php" method="post">
         <input type="submit" value="Logi välja" name="logout">
     </form>
@@ -79,55 +79,62 @@ $goods = groupData($sort, $search_term);
             <?php endif; ?>
         <?php endforeach; ?>
     <?php endif; ?>
-    <div class="container">
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th><a href="tava.php?sort=kaubanimi">Kauba nimi</a></th>
-                <th><a href="tava.php?sort=hind">Kauba Hind</a></th>
-                <th><a href="tava.php?sort=kaubagrupp">Kauba Grupp</a></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach($goods as $good): ?>
+    <div class="flex justify-around ">
+        <div   class="border-gray-400 rounded py-4">
+            <table>
+                <thead>
                 <tr>
-                    <td><strong><?=$good->id ?></strong></td>
-                    <td><?=$good->kaubanimi ?></td>
-                    <td><?=$good->hind ?></td>
-                    <td><?=$good->kaubagrupp ?></td>
-                    <td>
-                        <a title="Kustuta kaup" class="deleteBtn" href="tava.php?delete=<?=$good->id?>"
-                           onclick="return confirm('Oled kindel, et soovid kustutada?');">X</a>
-                        <a title="Muuda kaup" class="editBtn" href="tava.php?edit=<?=$good->id?>">&#9998;</a>
-                    </td>
+                    <th>Id</th>
+                    <th><a href="tava.php?sort=kaubanimi" class="m-2">Kauba nimi</a></th>
+                    <th><a href="tava.php?sort=hind" class="m-2">Kauba Hind</a></th>
+                    <th><a href="tava.php?sort=kaubagrupp" class="m-2">Kauba Grupp</a></th>
+                    <th></th>
                 </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-        <form action="tava.php">
-            <h2>Kaubagruppi lisamine:</h2>
-            <dl>
-                <dt>Kaubagruppi nimi:</dt>
-                <dd><input type="text" name="kaubagrupi_nimi" placeholder="Sisesta kaubagrupp..."></dd>
-                <input type="submit" name="kaubagrupi_lisamine" value="Lisa kaubagrupp">
-            </dl>
-        </form>
-        <form action="tava.php">
-            <h2>Kauba lisamine:</h2>
-            <dl>
-                <dt>Kauba nimetus:</dt>
-                <dd><input type="text" name="kaubanimi" placeholder="Sisesta kaubanimi..."></dd>
-                <dt>Kauba hind:</dt>
-                <dd><input type="text" name="hind" placeholder="Sisesta kauba hind..."></dd>
-                <dt>Kaubagrupp</dt>
-                <dd><?php
-                    echo createSelect("SELECT id, kaubagrupp FROM kaubagrupid", "kaubagrupp_id");
-                    ?></dd>
-                <input type="submit" name="kauba_lisamine" value="Lisa kaup">
-            </dl>
-        </form>
+                </thead>
+                <tbody>
+                <?php foreach($goods as $good): ?>
+                    <tr>
+                        <td><strong><?=$good->id ?></strong></td>
+                        <td><?=$good->kaubanimi ?></td>
+                        <td><?=$good->hind ?></td>
+                        <td><?=$good->kaubagrupp ?></td>
+                        <td>
+                            <a title="Kustuta kaup" class="deleteBtn" href="tava.php?delete=<?=$good->id?>"
+                               onclick="return confirm('Oled kindel, et soovid kustutada?');">X</a>
+                            <a title="Muuda kaup" class="editBtn" href="tava.php?edit=<?=$good->id?>">&#9998;</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <form action="tava.php">
+                <h2>Kaubagruppi lisamine:</h2>
+                <dl>
+                    <dt>Kaubagruppi nimi:</dt>
+                    <dd><input type="text" name="kaubagrupi_nimi" placeholder="Sisesta kaubagrupp..."></dd>
+                    <input type="submit" name="kaubagrupi_lisamine" value="Lisa kaubagrupp" class="cursor-pointer ">
+                </dl>
+            </form>
+        </div>
+        <div>
+            <form action="tava.php">
+                <h2>Kauba lisamine:</h2>
+                <dl>
+                    <dt>Kauba nimetus:</dt>
+                    <dd><input type="text" name="kaubanimi" placeholder="Sisesta kaubanimi..."></dd>
+                    <dt>Kauba hind:</dt>
+                    <dd><input type="text" name="hind" placeholder="Sisesta kauba hind..."></dd>
+                    <dt>Kaubagrupp</dt>
+                    <dd><?php
+                        echo createSelect("SELECT id, kaubagrupp FROM kaubagrupid", "kaubagrupp_id");
+                        ?></dd>
+                    <input type="submit" name="kauba_lisamine" value="Lisa kaup">
+                </dl>
+            </form>
+        </div>
+
     </div>
 </main>
 

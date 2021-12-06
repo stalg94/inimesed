@@ -48,9 +48,15 @@ if (!empty($_POST['login']) && !empty($_POST['pass'])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
-<h1>Login</h1>
-<form action="" method="post">
-    Login: <input type="text" name="login"><br>
-    Password: <input type="password" name="pass"><br>
-    <input type="submit" value="Logi sisse">
-</form>
+<div class="d-flex justify-content-lg-center">
+    <h1>Login</h1>
+</div>
+
+<div class="d-flex justify-content-lg-center">
+    <form action="" method="post">
+        Login: <input type="text" name="login"><br>
+        Password: <input type="password" name="pass"><br>
+        <input type="submit" value="Logi sisse" class="cursor-pointer">
+    </form>
+
+</div>

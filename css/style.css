@@ -78,6 +78,10 @@ form select {
 form h2 {
     margin-bottom: 10px;
 }
+
+input{
+    cursor: pointer;
+}
 .deleteBtn,
 .editBtn,
 .cancelBtn,
